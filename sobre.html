@@ -110,6 +110,16 @@ header.scrolled{padding:10px 6%;box-shadow:0 4px 28px rgba(11,79,108,.07);}
   color:#fff;font-size:1.1rem;flex-shrink:0;
   box-shadow:0 4px 16px rgba(11,79,108,.22);
 }
+.brand-logo-wrap{
+  width:110px;height:54px;border-radius:12px;overflow:hidden;
+  border:1.5px solid rgba(11,79,108,.14);background:#fff;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  box-shadow:0 4px 16px rgba(11,79,108,.1);
+  transition:all .4s var(--ease);
+  padding:3px;
+}
+.brand-logo-wrap:hover{border-color:var(--teal);box-shadow:0 6px 22px rgba(11,79,108,.18);}
+.brand-logo-wrap img{width:100%;height:100%;object-fit:contain;display:block;}
 .brand-text .name{
   font-family:'Fraunces',serif;font-size:.98rem;font-weight:700;
   color:var(--teal);line-height:1.1;letter-spacing:-.01em;
@@ -135,87 +145,109 @@ nav a:hover::after{width:100%;}
   min-height:100vh;padding:110px 6% 80px;
   display:flex;align-items:center;
   position:relative;overflow:hidden;
+  background:#060f16;
 }
-.hero-bg{
+.hero-img-bg{
   position:absolute;inset:0;z-index:0;
+  background-image:url('https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=1800&q=90');
+  background-size:cover;background-position:center 30%;
+  filter:brightness(.38) saturate(1.1);
+  transform:scale(1.04);
+  transition:transform 12s linear;
+}
+.hero-img-bg.loaded{transform:scale(1);}
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
-    radial-gradient(ellipse 60% 80% at 100% 50%, rgba(11,79,108,.06) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 50% at 0% 80%, rgba(5,150,105,.04) 0%, transparent 55%);
+    linear-gradient(105deg, rgba(6,15,22,.92) 0%, rgba(11,79,108,.55) 55%, rgba(5,150,105,.18) 100%),
+    linear-gradient(180deg, rgba(6,15,22,.2) 0%, rgba(6,15,22,.75) 100%);
 }
-.hero-cross-grid{
-  position:absolute;inset:0;z-index:0;pointer-events:none;
+.hero-grid-lines{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
   background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size:60px 60px;
-  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
-  opacity:.5;
+    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 90% 90% at 20% 50%, rgba(0,0,0,.6) 0%, transparent 75%);
 }
+.hero-med-cross{
+  position:absolute;top:50%;right:8%;transform:translateY(-50%);
+  z-index:1;pointer-events:none;opacity:.04;
+  font-size:28rem;color:#fff;line-height:1;
+  font-family:'Fraunces',serif;font-weight:700;letter-spacing:-.05em;
+  animation:crossPulse 6s ease-in-out infinite;
+}
+@keyframes crossPulse{0%,100%{opacity:.04;}50%{opacity:.07;}}
 .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;}
 .hero-left{}
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:10px;
-  background:var(--teal-pale);border:1px solid rgba(11,79,108,.18);
-  color:var(--teal);padding:7px 18px;border-radius:50px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  backdrop-filter:blur(12px);
+  color:#fff;padding:7px 18px;border-radius:50px;
   font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
   margin-bottom:28px;
   animation:chipIn .7s var(--ease) both;
+  box-shadow:0 4px 20px rgba(0,0,0,.2);
 }
-.hero-eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--emerald);animation:pulse-dot 2s infinite;flex-shrink:0;}
+.hero-eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:#5EE8A0;animation:pulse-dot 2s infinite;flex-shrink:0;box-shadow:0 0 8px #5EE8A0;}
 .hero h1{
   font-family:'Fraunces',serif;
-  font-size:clamp(2.6rem,4.5vw,4.4rem);
+  font-size:clamp(2.6rem,4.5vw,4.6rem);
   font-weight:500;line-height:1.06;
-  color:var(--ink);
+  color:#fff;
   margin-bottom:22px;
   animation:titleIn .9s .1s var(--ease) both;
+  text-shadow:0 2px 32px rgba(0,0,0,.4);
 }
 .hero h1 em{
   font-style:italic;
-  background:linear-gradient(120deg,var(--teal) 0%,var(--teal-mid) 60%,var(--emerald) 100%);
+  background:linear-gradient(120deg,#7FCFE0 0%,#5EE8A0 55%,#a8f0c6 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
 .hero-desc{
-  font-size:.95rem;color:var(--slate);line-height:1.85;
+  font-size:.95rem;color:rgba(255,255,255,.78);line-height:1.85;
   max-width:460px;margin-bottom:40px;font-weight:400;
   animation:fadeUp .8s .25s var(--ease) both;
+  text-shadow:0 1px 12px rgba(0,0,0,.3);
 }
 .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:52px;animation:fadeUp .8s .35s var(--ease) both;}
 .btn-primary{
-  background:var(--teal);color:#fff;
+  background:linear-gradient(135deg,var(--teal-mid),var(--teal));color:#fff;
   padding:16px 32px;border-radius:12px;
-  font-size:.8rem;font-weight:600;letter-spacing:.03em;
+  font-size:.8rem;font-weight:700;letter-spacing:.03em;
   text-decoration:none;display:inline-flex;align-items:center;gap:10px;
   transition:all .4s var(--ease);
-  box-shadow:0 8px 28px rgba(11,79,108,.25);
-  position:relative;overflow:hidden;
+  box-shadow:0 8px 32px rgba(11,79,108,.45);
+  position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.15);
 }
 .btn-primary::before{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.15),transparent 70%);
+  background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.2),transparent 70%);
   transform:translateX(-100%);transition:.5s;
 }
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(11,79,108,.35);}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 50px rgba(11,79,108,.55);}
 .btn-primary:hover::before{transform:translateX(100%);}
 .btn-outline{
-  background:transparent;color:var(--teal);
+  background:rgba(255,255,255,.1);color:#fff;
   padding:16px 28px;border-radius:12px;
   font-size:.8rem;font-weight:600;
-  text-decoration:none;border:1.5px solid var(--border-md);
+  text-decoration:none;border:1.5px solid rgba(255,255,255,.3);
+  backdrop-filter:blur(8px);
   transition:all .4s var(--ease);display:inline-flex;align-items:center;gap:8px;
 }
-.btn-outline:hover{background:var(--teal-pale);border-color:var(--teal);transform:translateY(-2px);}
+.btn-outline:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.55);transform:translateY(-2px);}
 .hero-social-proof{
   display:flex;gap:32px;padding:24px 0 0;
-  border-top:1px solid var(--border);
+  border-top:1px solid rgba(255,255,255,.14);
   animation:fadeUp .8s .45s var(--ease) both;
 }
 .hsp-item .num{
   font-family:'Fraunces',serif;font-size:1.9rem;font-weight:700;
-  color:var(--teal);line-height:1;
+  color:#fff;line-height:1;
 }
-.hsp-item .num sup{font-size:1rem;color:var(--emerald);}
-.hsp-item .lbl{font-size:.62rem;color:var(--mist);letter-spacing:.06em;margin-top:4px;text-transform:uppercase;}
+.hsp-item .num sup{font-size:1rem;color:#5EE8A0;}
+.hsp-item .lbl{font-size:.62rem;color:rgba(255,255,255,.5);letter-spacing:.06em;margin-top:4px;text-transform:uppercase;}
 
 /* RIGHT SIDE VISUAL */
 .hero-right{position:relative;animation:revealR .9s .2s var(--ease) both;}
@@ -737,7 +769,12 @@ footer{
 
 <!-- ─── PRELOADER ─── -->
 <div id="preloader">
-  <div class="pre-logo">Rafael <span>Amorim</span></div>
+  <div class="pre-logo" style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:8px;opacity:0;animation:fadeUp .7s .2s var(--ease) forwards;">
+    <div style="width:90px;height:46px;border-radius:10px;overflow:hidden;background:rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:3px;border:1px solid rgba(255,255,255,.3);box-shadow:0 4px 20px rgba(0,0,0,.3);">
+      <img src="https://github.com/brunoluissantos7-netizen/logorafael/blob/main/C%C3%B3pia%20de%20Black%20White%20Typography%20Thank%20You%20Sticker%20(1).png?raw=true" alt="Logo" style="width:100%;height:100%;object-fit:contain;" onerror="this.parentNode.innerHTML='<span style=\'font-family:Fraunces,serif;font-size:.9rem;font-weight:700;color:#0B4F6C\'>RA</span>'">
+    </div>
+    <span style="font-family:\'Fraunces\',serif;font-size:1.5rem;font-weight:500;color:#fff;">Rafael <span style="color:#7FCFE0;font-style:italic;">Amorim</span></span>
+  </div>
   <div class="pre-sub">Corretor de Planos de Saúde</div>
   <div class="ecg-wrap">
     <div class="ecg-monitor">
@@ -779,7 +816,10 @@ footer{
 <!-- ─── HEADER ─── -->
 <header id="hdr">
   <a href="#" class="brand">
-    <div class="brand-icon"><i class="fas fa-heart-pulse"></i></div>
+    <div class="brand-logo-wrap">
+      <img src="https://github.com/brunoluissantos7-netizen/logorafael/blob/main/C%C3%B3pia%20de%20Black%20White%20Typography%20Thank%20You%20Sticker%20(1).png?raw=true" alt="Rafael Amorim Corretor" id="logoImg" onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex'">
+      <div id="logoFallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;background:var(--teal);border-radius:12px;"><i class="fas fa-heart-pulse" style="color:#fff;font-size:1.2rem"></i></div>
+    </div>
     <div class="brand-text">
       <div class="name">Rafael Amorim</div>
       <div class="role">Corretor de Planos de Saúde</div>
@@ -792,20 +832,22 @@ footer{
     <a href="#processo">Como Funciona</a>
     <a href="#contato">Contato</a>
   </nav>
-  <a href="https://wa.me/5500000000000" class="btn-header"><i class="fab fa-whatsapp"></i> Cotação Grátis</a>
+  <a href="https://wa.me/5571999388216" class="btn-header"><i class="fab fa-whatsapp"></i> Cotação Grátis</a>
 </header>
 
 <!-- ─── HERO ─── -->
 <section class="hero" id="inicio">
-  <div class="hero-bg"></div>
-  <div class="hero-cross-grid"></div>
+  <div class="hero-img-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-med-cross">✚</div>
   <div class="hero-inner">
     <div class="hero-left">
       <div class="hero-eyebrow"><span class="pulse"></span>Corretor Especialista · 5 Anos de Mercado</div>
       <h1>Seu plano de saúde ideal, <em>sem complicações</em></h1>
       <p class="hero-desc">Atendimento personalizado para encontrar o plano que realmente faz sentido para você, sua família ou empresa — com as melhores operadoras do Brasil.</p>
       <div class="hero-ctas">
-        <a href="https://wa.me/5500000000000?text=Olá%2C+gostaria+de+uma+cotação+gratuita!" class="btn-primary"><i class="fab fa-whatsapp"></i> Quero minha cotação</a>
+        <a href="https://wa.me/5571999388216?text=Olá%2C+gostaria+de+uma+cotação+gratuita!" class="btn-primary"><i class="fab fa-whatsapp"></i> Quero minha cotação</a>
         <a href="#planos" class="btn-outline"><i class="fas fa-search"></i> Ver planos</a>
       </div>
       <div class="hero-social-proof">
@@ -860,7 +902,7 @@ footer{
             <span class="hcm-op-badge">Destaque</span>
           </div>
         </div>
-        <a href="https://wa.me/5500000000000" class="hcm-cta"><i class="fab fa-whatsapp"></i> Iniciar cotação gratuita agora</a>
+        <a href="https://wa.me/5571999388216" class="hcm-cta"><i class="fab fa-whatsapp"></i> Iniciar cotação gratuita agora</a>
       </div>
       <div class="float-badge bot-right">
         <div class="fb-icon teal"><i class="fas fa-clock"></i></div>
@@ -916,7 +958,7 @@ footer{
         <li><div class="ck-icon"><i class="fas fa-check"></i></div> Suporte completo pós-contratação, sempre que precisar</li>
         <li><div class="ck-icon"><i class="fas fa-check"></i></div> Atendimento de Segunda a Sábado, das 8h às 18h</li>
       </ul>
-      <a href="https://wa.me/5500000000000" class="btn-primary"><i class="fab fa-whatsapp"></i> Falar com Rafael agora</a>
+      <a href="https://wa.me/5571999388216" class="btn-primary"><i class="fab fa-whatsapp"></i> Falar com Rafael agora</a>
     </div>
   </div>
 </section>
@@ -932,7 +974,7 @@ footer{
   </div>
   <div class="ops-grid">
 
-    <a href="https://wa.me/5500000000000?text=Quero+cotar+plano+Amil" class="op-card" data-rev>
+    <a href="https://wa.me/5571999388216?text=Quero+cotar+plano+Amil" class="op-card" data-rev>
       <div class="op-ribbon">★ Mais Solicitado</div>
       <div class="op-logo">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwY9hYqVNKzWPqtQcQLlLfKbETe5pxY8WlCA&s" alt="Amil" onerror="this.parentNode.innerHTML='<span style=\'font-family:Fraunces,serif;font-size:1.5rem;font-weight:700;color:var(--teal)\'>Amil</span>'">
@@ -942,7 +984,7 @@ footer{
       <span class="op-cta">Cotar agora <i class="fas fa-arrow-right"></i></span>
     </a>
 
-    <a href="https://wa.me/5500000000000?text=Quero+cotar+plano+Hapvida" class="op-card" data-rev>
+    <a href="https://wa.me/5571999388216?text=Quero+cotar+plano+Hapvida" class="op-card" data-rev>
       <div class="op-logo">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Hapvida_logo.svg/2560px-Hapvida_logo.svg.png" alt="Hapvida" onerror="this.parentNode.innerHTML='<span style=\'font-family:Fraunces,serif;font-size:1.3rem;font-weight:700;color:var(--teal)\'>Hapvida</span>'">
       </div>
@@ -951,7 +993,7 @@ footer{
       <span class="op-cta">Cotar agora <i class="fas fa-arrow-right"></i></span>
     </a>
 
-    <a href="https://wa.me/5500000000000?text=Quero+cotar+plano+Bradesco+Saúde" class="op-card" data-rev>
+    <a href="https://wa.me/5571999388216?text=Quero+cotar+plano+Bradesco+Saúde" class="op-card" data-rev>
       <div class="op-ribbon green">★ Premium</div>
       <div class="op-logo">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Bradesco_logo.svg/2560px-Bradesco_logo.svg.png" alt="Bradesco Saúde" onerror="this.parentNode.innerHTML='<span style=\'font-family:Fraunces,serif;font-size:1.1rem;font-weight:700;color:var(--teal)\'>Bradesco Saúde</span>'">
@@ -961,7 +1003,7 @@ footer{
       <span class="op-cta">Cotar agora <i class="fas fa-arrow-right"></i></span>
     </a>
 
-    <a href="https://wa.me/5500000000000?text=Quero+cotar+plano+SulAmérica" class="op-card" data-rev>
+    <a href="https://wa.me/5571999388216?text=Quero+cotar+plano+SulAmérica" class="op-card" data-rev>
       <div class="op-logo">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8qYuZcpEMln4xqQ-tXPh1WSDx9abCFE0-5g&s" alt="SulAmérica" onerror="this.parentNode.innerHTML='<span style=\'font-family:Fraunces,serif;font-size:1.2rem;font-weight:700;color:var(--teal)\'>SulAmérica</span>'">
       </div>
@@ -970,7 +1012,7 @@ footer{
       <span class="op-cta">Cotar agora <i class="fas fa-arrow-right"></i></span>
     </a>
 
-    <a href="https://wa.me/5500000000000?text=Quero+cotar+plano+Unimed" class="op-card" data-rev>
+    <a href="https://wa.me/5571999388216?text=Quero+cotar+plano+Unimed" class="op-card" data-rev>
       <div class="op-logo">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Unimed_logo.svg/2560px-Unimed_logo.svg.png" alt="Unimed" onerror="this.parentNode.innerHTML='<span style=\'font-family:Fraunces,serif;font-size:1.4rem;font-weight:700;color:var(--emerald)\'>Unimed</span>'">
       </div>
@@ -979,7 +1021,7 @@ footer{
       <span class="op-cta">Cotar agora <i class="fas fa-arrow-right"></i></span>
     </a>
 
-    <a href="https://wa.me/5500000000000?text=Quero+cotar+plano+Porto+Saúde" class="op-card" data-rev>
+    <a href="https://wa.me/5571999388216?text=Quero+cotar+plano+Porto+Saúde" class="op-card" data-rev>
       <div class="op-logo">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Porto_Seguro_logo.svg/2560px-Porto_Seguro_logo.svg.png" alt="Porto Saúde" onerror="this.parentNode.innerHTML='<span style=\'font-family:Fraunces,serif;font-size:1.2rem;font-weight:700;color:var(--teal)\'>Porto Saúde</span>'">
       </div>
@@ -988,7 +1030,7 @@ footer{
       <span class="op-cta">Cotar agora <i class="fas fa-arrow-right"></i></span>
     </a>
 
-    <a href="https://wa.me/5500000000000?text=Quero+cotar+plano+Ampla" class="op-card" data-rev>
+    <a href="https://wa.me/5571999388216?text=Quero+cotar+plano+Ampla" class="op-card" data-rev>
       <div class="op-logo">
         <img src="https://mplanosdesaude.com.br/wp-content/uploads/2022/04/Ampla-saude-Recife-logo-300x109.webp" alt="Ampla Saúde" onerror="this.parentNode.innerHTML='<span style=\'font-family:Fraunces,serif;font-size:1.2rem;font-weight:700;color:var(--teal)\'>Ampla Saúde</span>'">
       </div>
@@ -997,7 +1039,7 @@ footer{
       <span class="op-cta">Cotar agora <i class="fas fa-arrow-right"></i></span>
     </a>
 
-    <a href="https://wa.me/5500000000000?text=Olá%2C+não+encontrei+meu+plano+ideal" class="op-card cta-card" data-rev>
+    <a href="https://wa.me/5571999388216?text=Olá%2C+não+encontrei+meu+plano+ideal" class="op-card cta-card" data-rev>
       <div style="width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#fff;"><i class="fab fa-whatsapp"></i></div>
       <div style="text-align:center;">
         <div style="font-family:'Fraunces',serif;font-size:1.05rem;font-weight:500;color:#fff;margin-bottom:6px;line-height:1.4;">Não encontrou<br>seu plano?</div>
@@ -1191,7 +1233,7 @@ footer{
       <div class="ct-ic green"><i class="fab fa-whatsapp" style="font-size:1.2rem"></i></div>
       <div>
         <div class="ct-lbl">WhatsApp</div>
-        <div class="ct-val">+55 (00) 00000-0000</div>
+        <div class="ct-val">+55 71 9 9938-8216</div>
       </div>
     </div>
     <div class="ct-card" data-rev>
@@ -1216,7 +1258,7 @@ footer{
   <h2>Pronto para <em>cuidar</em> da sua saúde?</h2>
   <p>Cotação gratuita · Resposta em menos de 1h · Sem compromisso</p>
   <div class="cta-btns">
-    <a href="https://wa.me/5500000000000?text=Olá%2C+gostaria+de+uma+cotação+gratuita!" class="btn-cta-wa"><i class="fab fa-whatsapp"></i> Iniciar pelo WhatsApp</a>
+    <a href="https://wa.me/5571999388216?text=Olá%2C+gostaria+de+uma+cotação+gratuita!" class="btn-cta-wa"><i class="fab fa-whatsapp"></i> Iniciar pelo WhatsApp</a>
     <a href="mailto:rafael@amorimcorretor.com.br" class="btn-cta-outline"><i class="fas fa-envelope"></i> Enviar por E-mail</a>
   </div>
 </div>
@@ -1226,7 +1268,9 @@ footer{
   <div class="footer-grid">
     <div>
       <div class="ft-brand">
-        <div class="ft-brand-icon"><i class="fas fa-heart-pulse"></i></div>
+        <div style="width:90px;height:46px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:3px;">
+          <img src="https://github.com/brunoluissantos7-netizen/logorafael/blob/main/C%C3%B3pia%20de%20Black%20White%20Typography%20Thank%20You%20Sticker%20(1).png?raw=true" alt="Rafael Amorim" style="width:100%;height:100%;object-fit:contain;" onerror="this.parentNode.style.background='var(--teal)';this.style.display='none'">
+        </div>
         <div>
           <div class="ft-brand-name">Rafael Amorim</div>
           <div class="ft-brand-role">Corretor de Planos de Saúde</div>
@@ -1237,7 +1281,7 @@ footer{
         <a href="#" class="soc"><i class="fab fa-instagram"></i></a>
         <a href="#" class="soc"><i class="fab fa-facebook"></i></a>
         <a href="#" class="soc"><i class="fab fa-linkedin"></i></a>
-        <a href="https://wa.me/5500000000000" class="soc"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://wa.me/5571999388216" class="soc"><i class="fab fa-whatsapp"></i></a>
       </div>
     </div>
     <div class="ft-col">
@@ -1257,7 +1301,7 @@ footer{
     </div>
     <div class="ft-col">
       <h4>Fale Conosco</h4>
-      <address>+55 (00) 00000-0000</address>
+      <address>+55 71 9 9938-8216</address>
       <address>rafael@amorimcorretor.com.br</address>
       <address>Atendimento remoto e presencial<br>Segunda a Sábado · 8h às 18h</address>
     </div>
@@ -1269,7 +1313,7 @@ footer{
 </footer>
 
 <!-- ─── WA FLOAT ─── -->
-<a href="https://wa.me/5500000000000" class="wa-float">
+<a href="https://wa.me/5571999388216" class="wa-float">
   <div class="wa-ring"></div>
   <i class="fab fa-whatsapp"></i>
 </a>
@@ -1469,7 +1513,19 @@ document.querySelectorAll('.op-card,.modal-card,.depo-card').forEach(card=>{
   card.addEventListener('mouseleave',()=>card.style.transform='');
 });
 
-/* ══ FAQ TOGGLE ══ */
+/* ══ HERO BG PARALLAX ══ */
+const heroBg = document.getElementById('heroBg');
+if(heroBg){
+  const img = new Image();
+  img.onload = ()=>{ heroBg.classList.add('loaded'); };
+  img.src = 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=1800&q=90';
+  window.addEventListener('scroll',()=>{
+    if(scrollY < window.innerHeight){
+      heroBg.style.transform = `scale(1) translateY(${scrollY*.12}px)`;
+    }
+  },{passive:true});
+}
+
 function toggleFaq(el){
   const item=el.parentElement;
   const wasOpen=item.classList.contains('open');
